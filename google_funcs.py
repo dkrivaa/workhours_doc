@@ -43,6 +43,7 @@ def read_sheet(sheet_name):
     sheet = book.worksheet(sheet_name)
     data = sheet.get_all_records()
     df = pd.DataFrame(data)
+    # Keeping only rows that hasn't been reported
     df = df[df['reported'] != 1]
 
     return df
