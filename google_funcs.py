@@ -51,15 +51,15 @@ def read_sheet(sheet_name):
     current_month = datetime.now().month
     current_year = datetime.now().year
 
-    # # Filter rows by checking the month and year without full conversion to datetime
-    # def is_before_current_month(date_str):
-    #     # Parse the date parts from the string
-    #     day, month, year = map(int, date_str.split("/"))
-    #
-    #     # Check if year is before the current year, or if within the same year, check the month
-    #     return year < current_year or (year == current_year and month < current_month)
-    #
-    # # Apply the function to filter rows
-    # df = df[df["Date"].apply(is_before_current_month)]
+    # Filter rows by checking the month and year without full conversion to datetime
+    def is_before_current_month(date_str):
+        # Parse the date parts from the string
+        day, month, year = map(int, date_str.split("/"))
+
+        # Check if year is before the current year, or if within the same year, check the month
+        return year < current_year or (year == current_year and month < current_month)
+
+    # Apply the function to filter rows
+    df = df[df["Date"].apply(is_before_current_month)]
 
     return df
