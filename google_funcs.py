@@ -31,3 +31,12 @@ def google_sheet_list():
     book_id = os.getenv("BOOK_ID")
     book = client.open_by_key(book_id)
     return [sheet.title for sheet in book.worksheets()]
+
+
+def read_sheet(sheet_name):
+    client = st.session_state['client']
+    book_id = os.getenv("BOOK_ID")
+    book = client.open_by_key(book_id)
+    sheet_data = book.worksheets(sheet_name)
+    df = pd.DataFrame(sheet_data)
+    return df
