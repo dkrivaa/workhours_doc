@@ -17,3 +17,9 @@ if sheet_name is not None:
     df = read_sheet(sheet_name)
     st.dataframe(df)
 
+    # Check the type of each element in each column
+    for column in df.columns:
+        st.write(f"Types in column '{column}':")
+        st.write(df[column].apply(type).value_counts())
+
+
