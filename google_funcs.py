@@ -52,6 +52,7 @@ def read_sheet(sheet_name):
     current_year = datetime.now().year
 
     # Filter rows by checking the month and year without full conversion to datetime
+    # Keeping rows only up to present month
     def is_before_current_month(date_str):
         # Parse the date parts from the string
         day, month, year = map(int, date_str.split("/"))
