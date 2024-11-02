@@ -8,8 +8,9 @@ google_client()
 # Getting client
 client = st.session_state['client']
 
-st.write(st.session_state)
-# # Get list of sheets
-# sheet_list = google_sheet_list()
-#
-# st.selectbox('Choose sheet', options=sheet_list, index=None)
+# Get list of sheets
+sheet_list = google_sheet_list()
+
+st.write(sheet_list)
+
+st.selectbox('Choose sheet', options=sheet_list, index=None)
