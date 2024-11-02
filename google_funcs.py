@@ -35,11 +35,13 @@ def google_sheet_list():
 
 
 def read_sheet(sheet_name):
+    # Getting Google spreadsheet (book)
     client = st.session_state['client']
     book_id = os.getenv("BOOK_ID")
     book = client.open_by_key(book_id)
-
+    # Reading data from relevant sheet
     sheet = book.worksheet(sheet_name)
     data = sheet.get_all_records()
     df = pd.DataFrame(data)
+
     return df
