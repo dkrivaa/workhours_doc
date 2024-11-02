@@ -43,5 +43,6 @@ def read_sheet(sheet_name):
     sheet = book.worksheet(sheet_name)
     data = sheet.get_all_records()
     df = pd.DataFrame(data)
+    df = df[df['reported'] is None]
 
     return df
