@@ -37,6 +37,7 @@ def read_sheet(sheet_name):
     client = st.session_state['client']
     book_id = os.getenv("BOOK_ID")
     book = client.open_by_key(book_id)
-    sheet_data = book.worksheets(sheet_name)
-    df = pd.DataFrame(sheet_data)
+    sheet = book.worksheets(sheet_name)
+    data = sheet.get_all_records()
+    df = pd.DataFrame(data)
     return df
