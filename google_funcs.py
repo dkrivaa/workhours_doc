@@ -11,7 +11,6 @@ import streamlit as st
 def google_client():
     # Get the Base64-encoded secret from the environment variable
     encoded_credentials = os.getenv("GOOGLE_CREDENTIALS_BASE64")
-    st.write(encoded_credentials)
     # Decode it back to JSON format
     decoded_credentials = base64.b64decode(encoded_credentials).decode("utf-8")
     # Load the credentials as a dictionary
