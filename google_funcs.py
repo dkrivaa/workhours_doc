@@ -15,8 +15,10 @@ def google_client():
     decoded_credentials = base64.b64decode(encoded_credentials).decode("utf-8")
     # Load the credentials as a dictionary
     creds_dict = json.loads(decoded_credentials)
+    # Define scope
+    SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
     # Authenticate using the credentials dictionary and defined scopes
-    creds = Credentials.from_service_account_info(creds_dict,)
+    creds = Credentials.from_service_account_info(creds_dict, scopes=SCOPES)
     # Connect to the Google Sheets API
     client = gspread.authorize(creds)
     # Save client to session state
