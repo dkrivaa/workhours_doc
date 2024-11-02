@@ -13,7 +13,7 @@ sheet_list = google_sheet_list()
 
 sheet_name = st.selectbox('Choose sheet', options=sheet_list, index=None)
 st.write(sheet_name)
-# if sheet_name is not None:
-#     df = read_sheet(sheet_name)
-#     st.dataframe(df)
+if sheet_name is not None:
+    df = read_sheet(sheet_name)
+    st.dataframe(df)
 
