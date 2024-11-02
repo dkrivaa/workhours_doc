@@ -44,6 +44,6 @@ def read_sheet(sheet_name):
     data = sheet.get_all_records()
     df = pd.DataFrame(data)
     # Keeping only rows that hasn't been reported
-    df = df[df['reported'] != 1]
+    df = df[(df['reported'] != 1) & df['Date'] > '1/10/2024']
 
     return df
