@@ -8,7 +8,7 @@ google_client()
 # Getting client
 client = st.session_state['client']
 
-st.write('test')
+st.write(st.session_state)
 # # Get list of sheets
 # sheet_list = google_sheet_list()
 #
