@@ -16,5 +16,5 @@ st.write(sheet_name)
 if sheet_name is not None:
     df = read_sheet(sheet_name)
     st.dataframe(df)
-    st.write(df.info)
+    st.write(df.dtypes)
 
