@@ -16,6 +16,7 @@ sheet_name = st.selectbox('Choose sheet', options=sheet_list, index=None)
 # Getting the data from relevant sheet that hasn't been reported
 if sheet_name is not None:
     with st.container(border=True):
+        st.subheader('Workhours to report')
         df = read_sheet(sheet_name)
         st.dataframe(df)
 
