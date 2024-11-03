@@ -23,9 +23,10 @@ if sheet_name is not None:
         prepare = st.button('Prepare Docx')
         if prepare:
             number_docx()
-            while 'docx_option' not in st.session_state:
+            if 'docx_option' not in st.session_state:
                 pass
-            st.write(st.session_state['docx_option'])
+            else:
+                st.write(st.session_state['docx_option'])
 
 
 
