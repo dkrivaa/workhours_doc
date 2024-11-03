@@ -18,13 +18,17 @@ if sheet_name is not None:
     with st.container(border=True):
         st.subheader('Workhours to report')
         df = read_sheet(sheet_name)
-        st.dataframe(df)
-        st.write('---')
 
         if len(df) > 0:
-            number_docx()
-            st.write(st.session_state['docx_option'])
+            st.dataframe(df)
+            st.write('---')
+            prepare_docx = st.button('Prepare Docx')
 
+            if prepare_docx:
+                number_docx()
+                st.write(st.session_state['docx_option'])
+        else:
+            st.write('No Hours to report')
 
 
 
