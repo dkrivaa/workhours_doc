@@ -62,6 +62,7 @@ def read_sheet(sheet_name):
 
     # Apply the function to filter rows
     df = df[df["Date"].apply(is_before_current_month)]
-    # df.drop(columns=['reported'])
+    # Drop the 'reported' column
+    df = df.drop(columns=['reported'])
 
     return df
