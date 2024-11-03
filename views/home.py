@@ -3,6 +3,9 @@ import streamlit as st
 from google_funcs import google_client, google_sheet_list, read_sheet
 from helpers import number_docx
 
+if 'docx_option' not in st.session_state:
+    st.session_state['docx_option'] = 2
+
 # Defining Google client and saving to session state
 google_client()
 # Getting client
@@ -23,10 +26,7 @@ if sheet_name is not None:
         prepare = st.button('Prepare Docx')
         if prepare:
             number_docx()
-            if 'docx_option' not in st.session_state:
-                pass
-            else:
-                st.write(st.session_state['docx_option'])
+            st.write(st.session_state['docx_option'])
 
 
 
