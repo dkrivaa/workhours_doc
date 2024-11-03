@@ -26,6 +26,7 @@ if sheet_name is not None:
             number_docx = st.radio('Choose an option',
                                    options=['One docx for all unreported hours',
                                             'One docx for each month'])
+            st.write(number_docx)
 
 
 
