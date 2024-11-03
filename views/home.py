@@ -12,10 +12,12 @@ client = st.session_state['client']
 sheet_list = google_sheet_list()
 # Choose one of sheets
 sheet_name = st.selectbox('Choose sheet', options=sheet_list, index=None)
+
 # Getting the data from relevant sheet that hasn't been reported
 if sheet_name is not None:
-    df = read_sheet(sheet_name)
-    st.dataframe(df)
+    with st.container(border=True):
+        df = read_sheet(sheet_name)
+        st.dataframe(df)
 
 
 
