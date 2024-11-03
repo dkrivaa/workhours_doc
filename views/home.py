@@ -28,7 +28,7 @@ if sheet_name is not None:
                 number_docx()
                 st.write(st.session_state['docx_option'])
         else:
-            st.write('No Hours to report')
+            st.write(':blue[No Hours to report]')
 
 
 
