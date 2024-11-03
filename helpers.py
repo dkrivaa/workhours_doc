@@ -10,8 +10,8 @@ def number_docx():
     submit = st.button('Submit')
     if submit:
         if docx_option == 0:
-            st.session_state['docx_option'] = 0
-        if docx_option == 1:
-            st.session_state['docx_option'] = 0
+            return 0
+        elif docx_option == 1:
+            return 1
         st.rerun()
 
