@@ -21,10 +21,11 @@ if sheet_name is not None:
         df = read_sheet(sheet_name)
         st.dataframe(df)
 
-        prepare = st.button('Prepare Docx')
-        if prepare:
-            docx_option = number_docx()
-            st.write(docx_option)
+        if len(df) > 0:
+            number_docx = st.radio('Choose an option',
+                                   options=['One docx for all unreported hours',
+                                            'One docx for each month'])
+
 
 
 
