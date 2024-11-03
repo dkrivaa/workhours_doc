@@ -19,8 +19,10 @@ if sheet_name is not None:
         st.subheader('Workhours to report')
         df = read_sheet(sheet_name)
         st.dataframe(df)
+        st.write('---')
 
         if len(df) > 0:
+            st.subheader('Prepare Docx')
             number_docx = st.radio('Choose an option',
                                    options=['One docx for all unreported hours',
                                             'One docx for each month'])
