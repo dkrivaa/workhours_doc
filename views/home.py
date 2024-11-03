@@ -24,7 +24,6 @@ if sheet_name is not None:
         if prepare:
             number_docx()
 
-            st.write(st.session_state['docx_option'])
 
 
 
