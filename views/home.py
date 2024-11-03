@@ -26,7 +26,7 @@ if sheet_name is not None:
         prepare = st.button('Prepare Docx')
         if prepare:
             number_docx()
-            st.write(st.session_state['docx_option'])
+        st.write(st.session_state['docx_option'])
 
 
 
