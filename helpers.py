@@ -1,7 +1,7 @@
 import streamlit as st
 
 
-@st.dialog('')
+@st.dialog('Number of Docx')
 def number_docx():
     docx_option = st.radio('Please choose an option',
              options=['Prepare one report for all unreported hours ',
