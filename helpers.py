@@ -8,6 +8,7 @@ def number_docx():
                                     'One docx for each month'],
                            index=None)
 
+    st.write(docx_option)
     if docx_option == 'One docx for all unreported hours':
         st.session_state['docx_option'] = 1
     elif docx_option == 'One docx for each month':
