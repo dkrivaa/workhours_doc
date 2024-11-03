@@ -1,7 +1,7 @@
 import streamlit as st
 
 from google_funcs import google_client, google_sheet_list, read_sheet
-
+from helpers import number_docx
 
 # Defining Google client and saving to session state
 google_client()
@@ -21,7 +21,8 @@ if sheet_name is not None:
         st.dataframe(df)
 
         prepare = st.button('Prepare Docx')
-        # if prepare:
+        if prepare:
+            number_docx()
 
 
 
