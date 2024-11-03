@@ -1,7 +1,7 @@
 import streamlit as st
 
 from google_funcs import google_client, google_sheet_list, read_sheet
-
+from helpers import number_docx
 
 # Defining Google client and saving to session state
 google_client()
@@ -22,11 +22,8 @@ if sheet_name is not None:
         st.write('---')
 
         if len(df) > 0:
-            st.subheader('Prepare Docx')
-            number_docx = st.radio('Choose an option',
-                                   options=['One docx for all unreported hours',
-                                            'One docx for each month'])
-            st.write(number_docx)
+            number_docx()
+            st.write(st.session_state['docx_option'])
 
 
 
