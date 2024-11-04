@@ -1,4 +1,5 @@
 import streamlit as st
+import time
 
 from google_funcs import google_client, google_sheet_list, read_sheet
 from helpers import number_docx
@@ -26,6 +27,8 @@ if sheet_name is not None:
 
             if prepare_docx:
                 number_docx()
+                time.sleep(3)
+                st.write(st.session_state['docx_option'])
 
         else:
             st.write(':blue[No Hours to report]')
