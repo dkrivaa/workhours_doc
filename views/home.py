@@ -33,8 +33,7 @@ if sheet_name is not None:
                 docx_buffer = one_docx(df)
 
             if prepare_many_docx:
-                # Create document when button is clicked
-                docx_buffer = one_docx(df)
+                pass
 
 
             # Download docx
