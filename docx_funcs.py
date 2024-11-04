@@ -19,7 +19,7 @@ def one_docx(df):
         year = year_list[0]
         st.write(month_name)
         hebrew_text = 'דיווח שעות לחודש'
-        title_text = f'{hebrew_text} {month_name} {year}'
+        title_text = f'{hebrew_text} {month_name} {year} '
 
     elif len(month_list) > 1:
         min_month = month_dict[str(month_list[0])]
@@ -63,6 +63,18 @@ def one_docx(df):
     add_subject.add_run(title_text)
     add_subject.space_after = Pt(20)
 
+    # Add table
+    table = document.add_table(rows=df.shape[0] + 1, cols=df.shape[1])
+    table.style = 'Table Grid'  # Optional: set a table style
+
+    # Add header row
+    for j, column_name in enumerate(df.columns):
+        table.cell(0, j).text = str(column_name)
+
+    # Add data rows
+    for i, row in df.iterrows():
+        for j, value in enumerate(row):
+            table.cell(i + 1, j).text = str(value)
 
     # Save the document in a BytesIO object
     buffer = BytesIO()
