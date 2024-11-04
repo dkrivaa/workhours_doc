@@ -47,7 +47,7 @@ def one_docx(df):
 
     df = reorder_dataframe(df)
 
-    # Create Document
+    # CREATE DOCUMENT
     document = Document()
 
     # Set RTL for the document
@@ -60,50 +60,47 @@ def one_docx(df):
     # Todays date in format dd/mm/yyyy
     today = date.today().strftime("%d/%m/%Y")
 
-    # Add date to doc
+    # Add DATE to doc
     add_date = document.add_paragraph(today)
     # Set spacing after date paragraph
     add_date.paragraph_format.space_after = Pt(50)
 
-    # Add subject
+    # Add SUBJECT
     add_subject = document.add_paragraph()
+    add_subject.style = 'Heading1'
     add_subject.alignment = WD_ALIGN_PARAGRAPH.CENTER
     # Set RTL for this paragraph
     pPr = add_subject._element.get_or_add_pPr()
     bidi = OxmlElement('w:bidi')
     bidi.set(qn('w:val'), '1')
     pPr.append(bidi)
-
-    # Add text
+    # Add subject text
     add_subject.add_run(title_text)
     add_subject.paragraph_format.space_after = Pt(100)
 
     # Add TABLE
     table = document.add_table(rows=df.shape[0] + 1, cols=df.shape[1])
     table.style = 'Table Grid'
-
     # Add headers
     for j, column_name in enumerate(df.columns):
         cell = table.cell(0, j)
         cell.text = str(column_name)
-
         # Set RTL for header cells
         pPr = cell.paragraphs[0]._element.get_or_add_pPr()
         bidi = OxmlElement('w:bidi')
         bidi.set(qn('w:val'), '1')
         pPr.append(bidi)
-
     # Add data rows
     for i, row in df.iterrows():
         for j, value in enumerate(row):
             cell = table.cell(i + 1, j)
             cell.text = str(value)
-
             # Set RTL for each cell in the row
             pPr = cell.paragraphs[0]._element.get_or_add_pPr()
             bidi = OxmlElement('w:bidi')
             bidi.set(qn('w:val'), '1')
             pPr.append(bidi)
+
 
     # Save the document in a BytesIO object
     buffer = BytesIO()
