@@ -153,7 +153,7 @@ def one_docx(df):
         f.write(base64.b64decode(encoded_image))
 
     # Add the image to the document
-    document.add_picture(image_path, width=Inches(3))  # Specify width
+    document.add_picture(image_path)  # Specify width
 
     # Clean up the temporary image file
     os.remove(image_path)
