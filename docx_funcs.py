@@ -86,7 +86,7 @@ def one_docx(df):
     pPr.append(bidi)
     # Add subject text
     add_subject.add_run(title_text)
-    add_subject.paragraph_format.space_after = Pt(50)
+    add_subject.paragraph_format.space_after = Pt(30)
 
     # Add TABLE
     table = document.add_table(rows=df.shape[0] + 1, cols=df.shape[1])
@@ -126,6 +126,20 @@ def one_docx(df):
     # Add subject text
     add_total_hours.add_run(total_hours_text)
     add_total_hours.paragraph_format.space_after = Pt(20)
+
+    # Add BLESS hours
+    add_bless = document.add_paragraph()
+    add_bless.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    # Set RTL for this paragraph
+    pPr = add_bless._element.get_or_add_pPr()
+    bidi = OxmlElement('w:bidi')
+    bidi.set(qn('w:val'), '1')
+    pPr.append(bidi)
+    # Add bless text
+    add_bless.add_run('בברכה')
+    add_bless.paragraph_format.space_after = Pt(20)
+
+
 
     # Save the document in a BytesIO object
     buffer = BytesIO()
