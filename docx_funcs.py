@@ -23,7 +23,8 @@ def one_docx(df):
     add_date.space_after = Pt(20)
 
     # Add subject
-    add_subject = document.add_paragraph('הנדון: דיווח')
+    add_subject = document.add_paragraph()
+    add_subject.add_run('הנדון: דיווח')
     add_subject.alignment = WD_ALIGN_PARAGRAPH.CENTER
     add_subject._p.get_or_add_pPr().set(qn('w:bidi'), '1')
 
