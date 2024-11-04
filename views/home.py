@@ -32,10 +32,6 @@ if sheet_name is not None:
                 # Create document when button is clicked
                 docx_buffer = one_docx(df)
 
-            # if prepare_many_docx:
-            #     pass
-
-
                 # Download docx
                 st.download_button(
                     label="Download Word Document",
