@@ -139,7 +139,6 @@ def one_docx(df):
     pPr.append(bidi)
     # Add bless text
     add_bless.add_run('בברכה')
-    add_bless.paragraph_format.space_after = Pt(20)
 
     # Save the document in a BytesIO object
     buffer = BytesIO()
