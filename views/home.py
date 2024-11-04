@@ -32,9 +32,6 @@ if sheet_name is not None:
                 # Create document when button is clicked
                 docx_buffer = one_docx(df)
 
-                new_df = update_sheet(sheet_name)
-                st.write(new_df)
-
                 # Download docx
                 st.download_button(
                     label="Download Word Document",
@@ -42,8 +39,6 @@ if sheet_name is not None:
                     file_name="my_document.docx",
                     mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
                     )
-
-
 
         # If there are no hours to report
         else:
