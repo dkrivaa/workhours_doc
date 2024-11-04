@@ -11,6 +11,7 @@ from helpers import months, month_names_dict
 
 def one_docx(df):
     month_code = months(df)[0]
+    st.write(month_code)
     month_dict = month_names_dict()
     month_name = month_dict[month_code]
 
