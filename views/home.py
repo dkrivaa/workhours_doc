@@ -25,7 +25,8 @@ if sheet_name is not None:
             st.dataframe(df)
             st.write('---')
             prepare_one_docx = st.button('Prepare docx for all unreported hours')
-            prepare_many_docx = st.button('Prepare docx for each month with unreported hours')
+            prepare_many_docx = st.button('Prepare docx for each month with unreported hours',
+                                          disabled=True)
             st.write('---')
             if prepare_one_docx:
                 # Create document when button is clicked
