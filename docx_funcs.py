@@ -74,7 +74,7 @@ def one_docx(df):
         # Add data to the table
         for i, row in df.iterrows():
             for k, value in enumerate(row):
-                st.write(value)
+                st.write(k, value)
                 # Ensure we stay within bounds
                 if k < df.shape[1]:
                     table.cell(i + 1, k).text = str(value)
