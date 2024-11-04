@@ -23,11 +23,11 @@ def one_docx(df):
     elif len(month_list) > 1:
         min_month = month_dict[str(month_list[0])]
         max_month = month_dict[str(month_list[-1])]
-        if len(year_list.unique().tolist()) == 1:
+        if len(list(set(year_list))) == 1:
             year = year_list[0]
             st.write(min_month, max_month)
             title_text = f'דיווח שעות לחודש {min_month}-{max_month} {year}'
-        elif len(year_list.unique().tolist()) > 1:
+        elif len(list(set(year_list))) > 1:
             title_text = f'דיווח שעות לחודש {min_month}-{max_month} {year_list[0]}-{year_list[-1]}'
 
     # Create Document
