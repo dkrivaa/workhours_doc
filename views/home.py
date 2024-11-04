@@ -39,12 +39,13 @@ if sheet_name is not None:
                     file_name="my_document.docx",
                     mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
                 )
+
         # If there are no hours to report
         else:
             st.write(':blue[No Hours to report]')
 
-    # new_df = update_sheet(sheet_name)
-    # st.write(new_df)
+    new_df = update_sheet(sheet_name)
+    st.write(new_df)
 
 
 
