@@ -3,7 +3,7 @@ import streamlit as st
 from google_funcs import google_client, google_sheet_list, read_sheet, update_sheet
 from docx_funcs import one_docx
 
-docx_buffer = ''
+
 # Defining Google client
 google_client()
 # Getting client
