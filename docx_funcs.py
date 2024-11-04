@@ -23,7 +23,7 @@ def one_docx(df):
 
     # Add date to doc
     add_date = document.add_paragraph(today)
-    add_date.space_after = Pt(50)
+    add_date.space_after = Pt(200)
 
     # Add subject
     add_subject = document.add_paragraph()
