@@ -53,7 +53,7 @@ def one_docx(df):
 
     total_hours = calc_total_hours(df)
     hebrew_total = 'סך שעות בדוח'
-    total_hours_text = f'{hebrew_total}: {total_hours} '
+    total_hours_text = f'{hebrew_total} {total_hours}: '
 
     df = reorder_dataframe(df)
 
@@ -116,7 +116,7 @@ def one_docx(df):
 
     # Add TOTAL hours
     add_total_hours = document.add_paragraph()
-    add_total_hours.style = 'Heading2'
+    add_total_hours.style = 'Heading1'
     add_total_hours.alignment = WD_ALIGN_PARAGRAPH.LEFT
     # Set RTL for this paragraph
     pPr = add_total_hours._element.get_or_add_pPr()
