@@ -4,7 +4,7 @@ from google_funcs import google_client, google_sheet_list, read_sheet
 from docx_funcs import one_docx
 
 
-# Defining Google client and saving to session state
+# Defining Google client
 google_client()
 # Getting client
 client = st.session_state['client']
@@ -20,6 +20,7 @@ if sheet_name is not None:
         st.subheader('Workhours to report:')
         df = read_sheet(sheet_name)
 
+        # If there are hours to report
         if len(df) > 0:
             st.dataframe(df)
             st.write('---')
@@ -37,7 +38,7 @@ if sheet_name is not None:
                     file_name="my_document.docx",
                     mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
                 )
-
+        # If there are no hours to report
         else:
             st.write(':blue[No Hours to report]')
 
