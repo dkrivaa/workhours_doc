@@ -27,9 +27,17 @@ def one_docx(df):
 
     # Add subject
     add_subject = document.add_paragraph()
-    add_subject.add_run('הנדון: דיווח')
     add_subject.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    add_subject._p.get_or_add_pPr().set(qn('w:bidi'), '1')
+    # Set RTL for this paragraph
+    pPr = add_subject._element.get_or_add_pPr()
+    bidi = OxmlElement('w:bidi')
+    bidi.set(qn('w:val'), '1')
+    pPr.append(bidi)
+
+    # Add text
+    add_subject.add_run("הנדון: דיווח")  # "This is Arabic text"
+    add_subject.space_after = Pt(12)
+
 
     # Save the document in a BytesIO object
     buffer = BytesIO()
