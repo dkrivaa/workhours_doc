@@ -18,13 +18,17 @@ def one_docx(df):
         month_name = month_dict[str(month_list[0])]
         year = year_list[0]
         st.write(month_name)
-        title_text = f'דיווח שעות לחודש {month_name}'
+        title_text = f'דיווח שעות לחודש {month_name} {year}'
 
     elif len(month_list) > 1:
         min_month = month_dict[str(month_list[0])]
         max_month = month_dict[str(month_list[-1])]
-        st.write(min_month, max_month)
-        title_text = f'דיווח שעות לחודש {min_month}-{max_month}'
+        if len(year_list) == 1:
+            year = year_list[0]
+            st.write(min_month, max_month)
+            title_text = f'דיווח שעות לחודש {min_month}-{max_month} {year}'
+        elif len(year_list) > 1:
+            title_text = f'דיווח שעות לחודש {min_month}-{max_month} {year_list[0]}-{year_list[-1]}'
 
     # Create Document
     document = Document()
