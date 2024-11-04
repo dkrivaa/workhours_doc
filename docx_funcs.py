@@ -28,9 +28,9 @@ def one_docx(df):
         if len(list(set(year_list))) == 1:
             year = year_list[0]
             st.write(min_month, max_month)
-            title_text = f' {hebrew_text} {min_month}-{max_month} {year}'
+            title_text = f'{hebrew_text} {min_month}-{max_month} {year} '
         elif len(list(set(year_list))) > 1:
-            title_text = f' {hebrew_text} {min_month}-{max_month} {year_list[0]}-{year_list[-1]}'
+            title_text = f'{hebrew_text} {min_month}-{max_month} {year_list[0]}-{year_list[-1]} '
 
     # Create Document
     document = Document()
