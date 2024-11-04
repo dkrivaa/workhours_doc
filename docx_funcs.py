@@ -11,11 +11,13 @@ from helpers import months, month_names_dict
 
 def one_docx(df):
     month_list, year_list = months(df)
-    st.write(month_list, year_list)
     month_dict = month_names_dict()
-    month_name = month_dict[str(month_list[0])]
-    year = year_list[0]
-    st.write(month_name)
+
+    if len(month_list) == 1:
+        month_name = month_dict[str(month_list[0])]
+        year = year_list[0]
+        st.write(month_name)
+        title_text = f'דיווח שעות לחודש {month_name} {year}'
 
 
     # Create Document
