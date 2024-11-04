@@ -7,7 +7,13 @@ from docx.oxml.ns import qn
 from datetime import date, datetime
 from io import BytesIO
 
+from helpers import months, month_names_dict
+
 def one_docx(df):
+    month_code = months(df)[0]
+    month_dict = month_names_dict()
+    month_name = month_dict[month_code]
+
     # Create Document
     document = Document()
 
@@ -36,7 +42,7 @@ def one_docx(df):
     pPr.append(bidi)
 
     # Add text
-    add_subject.add_run("הנגון: דיווח שעות")  # "This is Arabic text"
+    add_subject.add_run(f'דיווח שעות לחודש {month_name}')  # "This is Arabic text"
     add_subject.space_after = Pt(12)
 
 
@@ -47,8 +53,6 @@ def one_docx(df):
     return buffer
 
 
-def download_docx():
-    pass
 
 
 

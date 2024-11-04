@@ -25,7 +25,7 @@ if sheet_name is not None:
             st.write('---')
             prepare_one_docx = st.button('Prepare docx for all unreported hours')
             prepare_many_docx = st.button('Prepare docx for each month with unreported hours')
-
+            st.write('---')
             if prepare_one_docx:
                 # Create document when button is clicked
                 docx_buffer = one_docx(df)
