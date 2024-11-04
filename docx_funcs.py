@@ -136,7 +136,7 @@ def one_docx(df):
     bidi.set(qn('w:val'), '1')
     pPr.append(bidi)
     # Add bless text
-    add_bless.add_run('test')
+    add_bless.add_run('בברכה')
     add_bless.paragraph_format.space_after = Pt(20)
 
 
