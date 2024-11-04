@@ -29,8 +29,8 @@ if sheet_name is not None:
     #         if prepare_docx:
     #             number_docx()
     #
-    #     else:
-    #         st.write(':blue[No Hours to report]')
+        else:
+            st.write(':blue[No Hours to report]')
     #
     # # Waiting for dialog
     # time.sleep(2)
