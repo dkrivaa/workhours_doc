@@ -63,7 +63,7 @@ def one_docx(df):
 
     # Add text
     add_subject.add_run(title_text)
-    add_subject.space_after = Pt(20)
+    add_subject.paragraph_format.space_after = Pt(20)
 
     # Add table
     table = document.add_table(rows=df.shape[0] + 1, cols=df.shape[1])
