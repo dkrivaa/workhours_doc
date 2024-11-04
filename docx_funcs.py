@@ -18,7 +18,7 @@ def reorder_dataframe(df):
     df = df[column_order]
     # Rename columns to hebrew
     # df.columns = ['סך הכל שעות', 'שעת סיום', 'שעת התחלה', '', 'תאריך']
-
+    st.write(df)
     return df
 
 
@@ -41,7 +41,6 @@ def one_docx(df):
         hebrew_text = 'דיווח שעות לחודשים'
         if len(list(set(year_list))) == 1:
             year = year_list[0]
-            st.write(min_month, max_month)
             title_text = f'{hebrew_text} {min_month}-{max_month} {year} '
         elif len(list(set(year_list))) > 1:
             title_text = f'{hebrew_text} {min_month}-{max_month} {year_list[0]}-{year_list[-1]} '
