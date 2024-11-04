@@ -63,23 +63,34 @@ def one_docx(df):
 
     # Add text
     add_subject.add_run(title_text)
-    add_subject.paragraph_format.space_after = Pt(20)
+    add_subject.paragraph_format.space_after = Pt(100)
 
-    # Add table
+    # Add TABLE
     table = document.add_table(rows=df.shape[0] + 1, cols=df.shape[1])
-    table.style = 'Table Grid'  # Optional: set a table style
+    table.style = 'Table Grid'
 
-    # Add header row
+    # Add headers
     for j, column_name in enumerate(df.columns):
-        table.cell(0, j).text = str(column_name)
+        cell = table.cell(0, j)
+        cell.text = str(column_name)
 
-        # Add data to the table
-        for i, row in df.iterrows():
-            for k, value in enumerate(row):
-                st.write(i, k, value)
-                # Ensure we stay within bounds
-                if k < df.shape[1]:
-                    table.cell(i + 1, k).text = str(value)
+        # Set RTL for header cells
+        pPr = cell.paragraphs[0]._element.get_or_add_pPr()
+        bidi = OxmlElement('w:bidi')
+        bidi.set(qn('w:val'), '1')
+        pPr.append(bidi)
+
+    # Add data rows
+    for i, row in df.iterrows():
+        for j, value in enumerate(row):
+            cell = table.cell(i + 1, j)
+            cell.text = str(value)
+
+            # Set RTL for each cell in the row
+            pPr = cell.paragraphs[0]._element.get_or_add_pPr()
+            bidi = OxmlElement('w:bidi')
+            bidi.set(qn('w:val'), '1')
+            pPr.append(bidi)
 
     # Save the document in a BytesIO object
     buffer = BytesIO()
