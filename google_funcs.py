@@ -35,6 +35,7 @@ def google_sheet_list():
     return [sheet.title for sheet in book.worksheets()]
 
 
+# Check if unreported record is from before present month
 def is_before_current_month(date_str):
     # Get the current month and year
     current_month = datetime.now().month
@@ -59,19 +60,6 @@ def read_sheet(sheet_name):
     # Keeping only rows that hasn't been reported
     df = df[(df['reported'] != 1)]
 
-    # # Get the current month and year
-    # current_month = datetime.now().month
-    # current_year = datetime.now().year
-    #
-    # # Filter rows by checking the month and year without full conversion to datetime
-    # # Keeping rows only up to present month
-    # def is_before_current_month(date_str):
-    #     # Parse the date parts from the string
-    #     day, month, year = map(int, date_str.split("/"))
-    #
-    #     # Check if year is before the current year, or if within the same year, check the month
-    #     return year < current_year or (year == current_year and month < current_month)
-
     # Apply the function to filter rows
     df = df[df["Date"].apply(is_before_current_month)]
     if len(df) > 0:
@@ -90,3 +78,10 @@ def update_sheet(sheet_name):
     sheet = book.worksheet(sheet_name)
     data = sheet.get_all_records()
     df = pd.DataFrame(data)
+    for index, row in df.iterrows():
+        if row['Date'].apply(is_before_current_month):
+            row['reported'] = 1
+
+    return df
+
+

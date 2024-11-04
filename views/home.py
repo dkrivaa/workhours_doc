@@ -1,6 +1,6 @@
 import streamlit as st
 
-from google_funcs import google_client, google_sheet_list, read_sheet
+from google_funcs import google_client, google_sheet_list, read_sheet, update_sheet
 from docx_funcs import one_docx
 
 
@@ -47,7 +47,7 @@ if sheet_name is not None:
         else:
             st.write(':blue[No Hours to report]')
 
-
+    update_sheet(sheet_name)
 
 
 
