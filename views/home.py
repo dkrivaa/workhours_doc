@@ -32,6 +32,7 @@ if sheet_name is not None:
         else:
             st.write(':blue[No Hours to report]')
 
+    # Waiting for dialog
     time.sleep(2)
     docx_option = st.session_state['docx_option']
 
