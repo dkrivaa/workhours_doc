@@ -73,10 +73,10 @@ def one_docx(df):
 
         # Add data to the table
         for i, row in df.iterrows():
-            for j, value in enumerate(row):
+            for k, value in enumerate(row):
                 # Ensure we stay within bounds
-                if j < df.shape[1]:
-                    table.cell(i + 1, j).text = str(value)
+                if k < df.shape[1]:
+                    table.cell(i + 1, k).text = str(value)
 
     # Save the document in a BytesIO object
     buffer = BytesIO()
