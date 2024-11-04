@@ -30,7 +30,6 @@ if sheet_name is not None:
         else:
             st.write(':blue[No Hours to report]')
 
-    st.switch_page('views/docx.py')
 
 
 
