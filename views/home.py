@@ -1,5 +1,4 @@
 import streamlit as st
-import time
 
 from google_funcs import google_client, google_sheet_list, read_sheet
 from docx_funcs import one_docx
