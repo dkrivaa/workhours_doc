@@ -67,7 +67,7 @@ def one_docx(df):
 
     # Add SUBJECT
     add_subject = document.add_paragraph()
-    add_subject.style = 'Title'
+    add_subject.style = 'Heading1'
     add_subject.alignment = WD_ALIGN_PARAGRAPH.CENTER
     # Set RTL for this paragraph
     pPr = add_subject._element.get_or_add_pPr()
