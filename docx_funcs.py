@@ -5,8 +5,11 @@ from docx.shared import Pt
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
+from docx.shared import Cm
 from datetime import date, datetime
 from io import BytesIO
+import os
+import base64
 
 from helpers import months, month_names_dict
 
@@ -139,6 +142,21 @@ def one_docx(df):
     # Add bless text
     add_bless.add_run('בברכה')
     add_bless.paragraph_format.space_after = Pt(20)
+
+    # Add PICTURE
+    # Get image from secrets
+    encoded_image = os.getenv("BOOK_ID")
+    image_path = "temp_image.png"
+
+    # Decode the base64 image and save it temporarily
+    with open(image_path, "wb") as f:
+        f.write(base64.b64decode(encoded_image))
+
+    # Add the image to the document
+    document.add_picture(image_path, width=Cm(3))  # Specify width
+
+    # Clean up the temporary image file
+    os.remove(image_path)
 
 
 
