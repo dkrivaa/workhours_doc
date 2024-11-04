@@ -26,15 +26,9 @@ if sheet_name is not None:
             prepare_one_docx = st.button('Prepare a Docx for all unreported hours')
             prepare_many_docx = st.button('Prepare docx for each month with unreported hours')
 
-    #         if prepare_docx:
-    #             number_docx()
-    #
         else:
             st.write(':blue[No Hours to report]')
-    #
-    # # Waiting for dialog
-    # time.sleep(2)
-    # docx_option = st.session_state['docx_option']
+
 
 
 
