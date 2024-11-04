@@ -53,7 +53,7 @@ def one_docx(df):
 
     total_hours = calc_total_hours(df)
     hebrew_total = 'סך שעות בדוח'
-    total_hours_text = f'{hebrew_total} {total_hours}: '
+    total_hours_text = f'{hebrew_total} {total_hours} :'
 
     df = reorder_dataframe(df)
 
