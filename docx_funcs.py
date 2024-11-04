@@ -63,11 +63,11 @@ def one_docx(df):
     # Add DATE to doc
     add_date = document.add_paragraph(today)
     # Set spacing after date paragraph
-    add_date.paragraph_format.space_after = Pt(50)
+    add_date.paragraph_format.space_after = Pt(20)
 
     # Add SUBJECT
     add_subject = document.add_paragraph()
-    add_subject.style = 'Heading1'
+    add_subject.style = 'Title'
     add_subject.alignment = WD_ALIGN_PARAGRAPH.CENTER
     # Set RTL for this paragraph
     pPr = add_subject._element.get_or_add_pPr()
@@ -76,7 +76,7 @@ def one_docx(df):
     pPr.append(bidi)
     # Add subject text
     add_subject.add_run(title_text)
-    add_subject.paragraph_format.space_after = Pt(100)
+    add_subject.paragraph_format.space_after = Pt(50)
 
     # Add TABLE
     table = document.add_table(rows=df.shape[0] + 1, cols=df.shape[1])
