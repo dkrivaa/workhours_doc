@@ -9,7 +9,7 @@ def months(df):
         day, month, year = map(int, date_str.split("/"))
         return month
 
-    for row in df.iterrows():
+    for index, row in df.iterrows():
         month = row_month(row['date'])
         months_set.add(month)
 
