@@ -23,7 +23,7 @@ if sheet_name is not None:
         if len(df) > 0:
             st.dataframe(df)
             st.write('---')
-            prepare_one_docx = st.button('Prepare a Docx for all unreported hours')
+            prepare_one_docx = st.button('Prepare docx for all unreported hours')
             prepare_many_docx = st.button('Prepare docx for each month with unreported hours')
 
             if prepare_one_docx:
