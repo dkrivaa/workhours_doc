@@ -38,7 +38,7 @@ if sheet_name is not None:
                     data=docx_buffer,
                     file_name="my_document.docx",
                     mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                )
+                    )
 
                 new_df = update_sheet(sheet_name)
                 st.write(new_df)
