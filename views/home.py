@@ -27,13 +27,13 @@ if sheet_name is not None:
 
             if prepare_docx:
                 number_docx()
-                time.sleep(3)
-                st.write(st.session_state['docx_option'])
+
 
         else:
             st.write(':blue[No Hours to report]')
 
-
+    time.sleep(3)
+    st.write(st.session_state['docx_option'])
 
 
 
