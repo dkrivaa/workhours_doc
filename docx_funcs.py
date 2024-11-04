@@ -129,6 +129,7 @@ def one_docx(df):
 
     # Add BLESS
     add_bless = document.add_paragraph()
+    add_bless.style = 'Heading3'
     add_bless.alignment = WD_ALIGN_PARAGRAPH.CENTER
     # Set RTL for this paragraph
     pPr = add_bless._element.get_or_add_pPr()
