@@ -17,8 +17,12 @@ def one_docx(df):
         month_name = month_dict[str(month_list[0])]
         year = year_list[0]
         st.write(month_name)
-        title_text = f'דיווח שעות לחודש {month_name} {year}'
+        title_text = f'דיווח שעות לחודש {month_name}'
 
+    elif len(month_list) > 1:
+        min_month = month_dict[str(month_list[0])]
+        max_month = month_dict[str(month_list[-1])]
+        title_text = f'דיווח שעות לחודש {min_month}-{max_month}'
 
     # Create Document
     document = Document()
@@ -48,7 +52,7 @@ def one_docx(df):
     pPr.append(bidi)
 
     # Add text
-    add_subject.add_run(f'דיווח שעות לחודש {month_name}')  # "This is Arabic text"
+    add_subject.add_run(title_text)  # "This is Arabic text"
     add_subject.space_after = Pt(12)
 
 
