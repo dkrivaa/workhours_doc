@@ -10,7 +10,7 @@ from io import BytesIO
 from helpers import months, month_names_dict
 
 def one_docx(df):
-    month_code = months(df)[0]
+    month_code = months(df)
     st.write(month_code)
     month_dict = month_names_dict()
     month_name = month_dict[str(month_code)]

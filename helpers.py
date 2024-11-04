@@ -2,7 +2,7 @@ import streamlit as st
 
 
 def months(df):
-    months_set = set()
+    months_set = []
 
     def row_month(date_str):
         # Parse the date parts from the string
@@ -11,7 +11,7 @@ def months(df):
 
     for index, row in df.iterrows():
         month = row_month(row['Date'])
-        months_set.add(month)
+        months_set.append(month)
 
     return months_set
 
