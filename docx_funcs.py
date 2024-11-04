@@ -52,7 +52,8 @@ def one_docx(df):
             title_text = f'{hebrew_text} {min_month}-{max_month} {year_list[0]}-{year_list[-1]} '
 
     total_hours = calc_total_hours(df)
-    st.write(total_hours)
+    hebrew_total = 'סך שעות בדוח:'
+    total_hours_text = f'{hebrew_total} {total_hours}'
 
     df = reorder_dataframe(df)
 
@@ -109,6 +110,22 @@ def one_docx(df):
             bidi = OxmlElement('w:bidi')
             bidi.set(qn('w:val'), '1')
             pPr.append(bidi)
+
+    # Add a space below the table
+    document.add_paragraph()
+
+    # Add TOTAL hours
+    add_total_hours = document.add_paragraph()
+    add_total_hours.style = 'Heading3'
+    add_total_hours.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    # Set RTL for this paragraph
+    pPr = add_total_hours._element.get_or_add_pPr()
+    bidi = OxmlElement('w:bidi')
+    bidi.set(qn('w:val'), '1')
+    pPr.append(bidi)
+    # Add subject text
+    add_total_hours.add_run(total_hours_text)
+    add_total_hours.paragraph_format.space_after = Pt(20)
 
     # Save the document in a BytesIO object
     buffer = BytesIO()
