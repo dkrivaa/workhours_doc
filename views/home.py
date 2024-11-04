@@ -27,7 +27,16 @@ if sheet_name is not None:
             prepare_many_docx = st.button('Prepare docx for each month with unreported hours')
 
             if prepare_one_docx:
-                one_docx(df)
+                # Create document when button is clicked
+                docx_buffer = one_docx(df)
+                # Download
+                if st.button("Download Document"):
+                    st.download_button(
+                        label="Download Word Document",
+                        data=docx_buffer,
+                        file_name="my_document.docx",
+                        mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                    )
 
         else:
             st.write(':blue[No Hours to report]')
