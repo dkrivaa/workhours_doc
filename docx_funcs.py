@@ -35,7 +35,7 @@ def one_docx(df):
     pPr.append(bidi)
 
     # Add text
-    add_subject.add_run("הנדון: דיווח")  # "This is Arabic text"
+    add_subject.add_run("הנגון: דיווח שעות")  # "This is Arabic text"
     add_subject.space_after = Pt(12)
 
 
