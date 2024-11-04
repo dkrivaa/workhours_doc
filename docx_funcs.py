@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 from docx import Document
 from docx.shared import Pt
 from docx.enum.text import WD_ALIGN_PARAGRAPH
@@ -22,6 +23,12 @@ def reorder_dataframe(df):
     return df
 
 
+def calc_total_hours(df):
+    # Calculate total hours without modifying the DataFrame
+    total_time = pd.to_timedelta(df['total'] + ':00').sum()  # Adds ":00" for seconds if necessary
+    total_hours = total_time.total_seconds() / 3600  # Convert total seconds to hours
+    return total_hours
+
 def one_docx(df):
 
     title_text = ''
@@ -44,6 +51,9 @@ def one_docx(df):
             title_text = f'{hebrew_text} {min_month}-{max_month} {year} '
         elif len(list(set(year_list))) > 1:
             title_text = f'{hebrew_text} {min_month}-{max_month} {year_list[0]}-{year_list[-1]} '
+
+    total_hours = calc_total_hours(df)
+    st.write(total_hours)
 
     df = reorder_dataframe(df)
 
