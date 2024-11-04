@@ -26,7 +26,7 @@ if sheet_name is not None:
 
             if prepare_docx:
                 number_docx()
-                st.write(st.session_state['docx_option'])
+                st.switch_page('views/docx.py')
         else:
             st.write(':blue[No Hours to report]')
 

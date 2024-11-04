@@ -16,4 +16,4 @@ def number_docx():
     st.write('---')
     submit = st.button('Submit')
     if submit:
-        return
+        st.rerun()
