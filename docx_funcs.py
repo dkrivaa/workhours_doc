@@ -23,7 +23,7 @@ def reorder_dataframe(df):
 
 
 def one_docx(df):
-    df = reorder_dataframe(df)
+
     title_text = ''
     month_list, year_list = months(df)
     month_dict = month_names_dict()
@@ -44,6 +44,8 @@ def one_docx(df):
             title_text = f'{hebrew_text} {min_month}-{max_month} {year} '
         elif len(list(set(year_list))) > 1:
             title_text = f'{hebrew_text} {min_month}-{max_month} {year_list[0]}-{year_list[-1]} '
+
+    df = reorder_dataframe(df)
 
     # Create Document
     document = Document()
