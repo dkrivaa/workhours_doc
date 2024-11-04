@@ -143,23 +143,6 @@ def one_docx(df):
     add_bless.add_run('בברכה')
     add_bless.paragraph_format.space_after = Pt(20)
 
-    # Add PICTURE
-    # Get image from secrets
-    encoded_image = os.getenv("BOOK_ID")
-    image_path = "temp_image.png"
-
-    # Decode the base64 image and save it temporarily
-    with open(image_path, "wb") as f:
-        f.write(base64.b64decode(encoded_image))
-
-    # Add the image to the document
-    document.add_picture(image_path)  # Specify width
-
-    # Clean up the temporary image file
-    os.remove(image_path)
-
-
-
     # Save the document in a BytesIO object
     buffer = BytesIO()
     document.save(buffer)
