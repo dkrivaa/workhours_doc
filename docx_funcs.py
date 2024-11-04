@@ -19,7 +19,6 @@ def reorder_dataframe(df):
     df = df[column_order]
     # Rename columns to hebrew
     df.columns = ['סך הכל שעות', 'שעת סיום', 'שעת התחלה', '', 'תאריך']
-    st.write(df)
     return df
 
 
@@ -110,7 +109,6 @@ def one_docx(df):
             bidi = OxmlElement('w:bidi')
             bidi.set(qn('w:val'), '1')
             pPr.append(bidi)
-
 
     # Save the document in a BytesIO object
     buffer = BytesIO()
