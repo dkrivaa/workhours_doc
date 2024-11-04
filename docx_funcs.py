@@ -16,7 +16,7 @@ def reorder_dataframe(df):
     # Change order of columns
     column_order = ['total', 'End Hour', 'Start Hour', 'Comments', 'Date']
     # Rename columns to hebrew
-    df.columns = ['סך הכל שעות', 'שעת סיום', 'שעת התחלה', '', 'תאריך']
+    # df.columns = ['סך הכל שעות', 'שעת סיום', 'שעת התחלה', '', 'תאריך']
 
     return df
 
