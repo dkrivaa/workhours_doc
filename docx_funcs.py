@@ -13,7 +13,10 @@ def one_docx(df):
 
     # Set RTL for the document
     section = document.sections[0]
-    section._sectPr.xpath('./w:bidi')[0].set(qn('w:val'), '1')
+    # Create bidi element if it doesn't exist
+    bidi = OxmlElement('w:bidi')
+    bidi.set(qn('w:val'), '1')
+    section._sectPr.append(bidi)
 
     # Todays date in format dd/mm/yyyy
     today = date.today().strftime("%d/%m/%Y")
