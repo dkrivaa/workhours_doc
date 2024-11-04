@@ -127,7 +127,7 @@ def one_docx(df):
     add_total_hours.add_run(total_hours_text)
     add_total_hours.paragraph_format.space_after = Pt(20)
 
-    # Add BLESS hours
+    # Add BLESS
     add_bless = document.add_paragraph()
     add_bless.alignment = WD_ALIGN_PARAGRAPH.CENTER
     # Set RTL for this paragraph
@@ -136,7 +136,7 @@ def one_docx(df):
     bidi.set(qn('w:val'), '1')
     pPr.append(bidi)
     # Add bless text
-    add_bless.add_run('בברכה')
+    add_bless.add_run('test')
     add_bless.paragraph_format.space_after = Pt(20)
 
 
