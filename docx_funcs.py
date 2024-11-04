@@ -5,7 +5,7 @@ from docx.shared import Pt
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
-from docx.shared import Cm
+from docx.shared import Inches
 from datetime import date, datetime
 from io import BytesIO
 import os
@@ -153,7 +153,7 @@ def one_docx(df):
         f.write(base64.b64decode(encoded_image))
 
     # Add the image to the document
-    document.add_picture(image_path, width=Cm(3))  # Specify width
+    document.add_picture(image_path, width=Inches(3))  # Specify width
 
     # Clean up the temporary image file
     os.remove(image_path)
