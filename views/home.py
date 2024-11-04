@@ -32,23 +32,23 @@ if sheet_name is not None:
                 # Create document when button is clicked
                 docx_buffer = one_docx(df)
 
-            if prepare_many_docx:
-                pass
+            # if prepare_many_docx:
+            #     pass
 
 
-            # Download docx
-            st.download_button(
-                label="Download Word Document",
-                data=docx_buffer,
-                file_name="my_document.docx",
-                mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-            )
+                # Download docx
+                st.download_button(
+                    label="Download Word Document",
+                    data=docx_buffer,
+                    file_name="my_document.docx",
+                    mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                )
         # If there are no hours to report
         else:
             st.write(':blue[No Hours to report]')
 
-    # new_df = update_sheet(sheet_name)
-    # st.write(new_df)
+    new_df = update_sheet(sheet_name)
+    st.write(new_df)
 
 
 
