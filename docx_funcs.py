@@ -9,7 +9,9 @@ from io import BytesIO
 
 from helpers import months, month_names_dict
 
+
 def one_docx(df):
+    df = df.reset_index(drop=True)
     title_text = ''
     month_list, year_list = months(df)
     month_dict = month_names_dict()
