@@ -2,18 +2,20 @@ import streamlit as st
 
 
 def months(df):
-    months_set = []
+    months_list = []
+    year_list = []
 
     def row_month(date_str):
         # Parse the date parts from the string
         day, month, year = map(int, date_str.split("/"))
-        return month
+        return month, year
 
     for index, row in df.iterrows():
-        month = row_month(row['Date'])
-        months_set.append(month)
+        month, year = row_month(row['Date'])
+        months_list.append(month)
+        year_list.append(year)
 
-    return months_set
+    return months_list, year_list
 
 
 def month_names_dict():
