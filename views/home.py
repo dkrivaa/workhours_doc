@@ -13,7 +13,7 @@ client = st.session_state['client']
 sheet_list = google_sheet_list()
 # Choose one of sheets
 sheet_name = st.selectbox('Choose sheet', options=sheet_list, index=None)
-
+docx_buffer = None
 # Getting the data from relevant sheet that hasn't been reported
 if sheet_name is not None:
     with st.container(border=True):
@@ -48,6 +48,7 @@ if sheet_name is not None:
                 except Exception as e:
                     # Log the exception if document creation fails
                     st.error(f"Error creating document: {e}")
+
         # If there are no hours to report
         else:
             st.write(':blue[No Hours to report]')
