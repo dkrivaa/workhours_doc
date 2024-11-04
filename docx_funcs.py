@@ -10,8 +10,19 @@ from io import BytesIO
 from helpers import months, month_names_dict
 
 
-def one_docx(df):
+def reorder_dataframe(df):
+    # Reset index
     df = df.reset_index(drop=True)
+    # Change order of columns
+    column_order = ['total', 'End Hour', 'Start Hour', 'Comments', 'Date']
+    # Rename columns to hebrew
+    df.columns = ['סך הכל שעות', 'שעת סיום', 'שעת התחלה', '', 'תאריך']
+
+    return df
+
+
+def one_docx(df):
+    df = reorder_dataframe(df)
     title_text = ''
     month_list, year_list = months(df)
     month_dict = month_names_dict()
