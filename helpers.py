@@ -11,7 +11,6 @@ def months(df):
         return month, year
 
     for index, row in df.iterrows():
-        st.write(index, row)
         month, year = row_month(row['Date'])
         months_list.append(month)
         year_list.append(year)
