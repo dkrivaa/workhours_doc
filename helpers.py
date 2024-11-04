@@ -6,11 +6,11 @@ def months(df):
 
     def row_month(date_str):
         # Parse the date parts from the string
-        day, month, year = map(str, date_str.split("/"))
+        day, month, year = map(int, date_str.split("/"))
         return month
 
     for index, row in df.iterrows():
-        month = row_month(row['date'])
+        month = row_month(row['Date'])
         months_set.add(month)
 
     return months_set
