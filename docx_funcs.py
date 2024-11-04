@@ -5,11 +5,9 @@ from docx.shared import Pt
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
-from docx.shared import Inches
-from datetime import date, datetime
+from datetime import date
 from io import BytesIO
-import os
-import base64
+
 
 from helpers import months, month_names_dict
 
