@@ -49,12 +49,14 @@ if sheet_name is not None:
                     # Log the exception if document creation fails
                     st.error(f"Error creating document: {e}")
 
+                new_df = update_sheet(sheet_name)
+                st.write(new_df)
+
         # If there are no hours to report
         else:
             st.write(':blue[No Hours to report]')
 
-    new_df = update_sheet(sheet_name)
-    st.write(new_df)
+
 
 
 
