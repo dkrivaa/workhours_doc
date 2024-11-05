@@ -42,6 +42,10 @@ if sheet_name is not None:
                             file_name="my_document.docx",
                             mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
                         )
+
+                        new_df = update_sheet(sheet_name)
+                        st.write(new_df)
+
                     else:
                         st.error("Failed to create document. `docx_buffer` is None.")
 
@@ -49,8 +53,7 @@ if sheet_name is not None:
                     # Log the exception if document creation fails
                     st.error(f"Error creating document: {e}")
 
-                new_df = update_sheet(sheet_name)
-                st.write(new_df)
+
 
         # If there are no hours to report
         else:
