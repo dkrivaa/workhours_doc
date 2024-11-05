@@ -96,7 +96,11 @@ def create_document(df, title_text, total_hours_text):
                             space_after=20, rtl=True)
 
     # Add blessing paragraph in center with Heading2 style and RTL
-    add_paragraph_with_text(document, 'בברכה', style='Heading2', alignment=WD_ALIGN_PARAGRAPH.CENTER, rtl=True)
+    add_paragraph_with_text(document, 'בברכה', style='Heading2', alignment=WD_ALIGN_PARAGRAPH.CENTER,
+                            space_after=20, rtl=True)
+
+    add_paragraph_with_text(document, 'דני קריבו', style='Heading2', alignment=WD_ALIGN_PARAGRAPH.CENTER,
+                            rtl=True)
 
     # Save document to a BytesIO buffer
     buffer = BytesIO()
