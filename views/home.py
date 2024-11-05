@@ -48,15 +48,6 @@ if sheet_name is not None:
                             file_name="my_document.docx",
                             mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
                         )
-                        # Set the flag when document is downloaded
-                        st.session_state.downloaded = True
-
-                        if st.session_state.downloaded:
-                            new_df = update_sheet(sheet_name)
-                            st.write(new_df)
-
-                            # Reset the flag to prevent repeated updates on rerun
-                            st.session_state.downloaded = False
 
                     else:
                         st.error("Failed to create document. `docx_buffer` is None.")
@@ -65,7 +56,9 @@ if sheet_name is not None:
                     # Log the exception if document creation fails
                     st.error(f"Error creating document: {e}")
 
-
+                # Update Google sheet so unreported hours become reported
+                new_df = update_sheet(sheet_name)
+                st.write(new_df)
 
         # If there are no hours to report
         else:
