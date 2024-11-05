@@ -58,7 +58,6 @@ if sheet_name is not None:
 
                 # Update Google sheet so unreported hours become reported
                 new_df = update_sheet(sheet_name)
-                st.write(new_df)
 
         # If there are no hours to report
         else:
