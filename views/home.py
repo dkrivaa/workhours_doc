@@ -13,7 +13,13 @@ client = st.session_state['client']
 sheet_list = google_sheet_list()
 # Choose one of sheets
 sheet_name = st.selectbox('Choose sheet', options=sheet_list, index=None)
+
+# Initialize variables
 docx_buffer = None
+# Initialize a flag in session_state to track download action
+if "downloaded" not in st.session_state:
+    st.session_state.downloaded = False
+
 # Getting the data from relevant sheet that hasn't been reported
 if sheet_name is not None:
     with st.container(border=True):
@@ -42,9 +48,8 @@ if sheet_name is not None:
                             file_name="my_document.docx",
                             mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
                         ):
-
-                            new_df = update_sheet(sheet_name)
-                            st.write(new_df)
+                            # Set the flag when document is downloaded
+                            st.session_state.downloaded = True
 
                     else:
                         st.error("Failed to create document. `docx_buffer` is None.")
@@ -53,7 +58,12 @@ if sheet_name is not None:
                     # Log the exception if document creation fails
                     st.error(f"Error creating document: {e}")
 
+                if st.session_state.downloaded:
+                    new_df = update_sheet(sheet_name)
+                    st.write(new_df)
 
+                    # Reset the flag to prevent repeated updates on rerun
+                    st.session_state.downloaded = False
 
         # If there are no hours to report
         else:
