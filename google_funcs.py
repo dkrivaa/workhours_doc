@@ -76,8 +76,9 @@ def update_sheet(sheet_name):
     book = client.open_by_key(book_id)
     # Reading data from relevant sheet
     sheet = book.worksheet(sheet_name)
-    data = sheet.get_all_records()
-    df = pd.DataFrame(data)
+    df = pd.DataFrame(sheet.get_all_records())
+    # data = sheet.get_all_records()
+    # df = pd.DataFrame(data)
     for index, row in df.iterrows():
         if is_before_current_month(row['Date']):
             df.at[index, 'reported'] = 1
