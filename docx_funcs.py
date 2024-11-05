@@ -65,7 +65,7 @@ def create_document(df, title_text, total_hours_text):
     today = date.today().strftime("%d/%m/%Y")
 
     # Add date paragraph with right alignment
-    add_paragraph_with_text(document, today, alignment=WD_ALIGN_PARAGRAPH.RIGHT, space_after=20)
+    add_paragraph_with_text(document, today, alignment=WD_ALIGN_PARAGRAPH.LEFT, space_after=20)
 
     # Add subject title in center with Heading1 style and RTL
     add_paragraph_with_text(document, title_text, style='Heading1', alignment=WD_ALIGN_PARAGRAPH.CENTER, space_after=30,
