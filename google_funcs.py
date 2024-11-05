@@ -11,7 +11,7 @@ from datetime import datetime
 # Defining Google client and saving to session state
 def google_client():
     # Get the Base64-encoded secret from the environment variable
-    encoded_credentials = os.getenv("GOOGLE_CREDENTIALS_BASE64")
+    encoded_credentials = st.secrets("GOOGLE_CREDENTIALS_BASE64")
     # Decode it back to JSON format
     decoded_credentials = base64.b64decode(encoded_credentials).decode("utf-8")
     # Load the credentials as a dictionary
