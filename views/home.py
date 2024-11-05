@@ -54,7 +54,6 @@ if sheet_name is not None:
             st.write(':blue[No Hours to report]')
 
     new_df = update_sheet(sheet_name)
-    st.write(new_df)
 
 
 

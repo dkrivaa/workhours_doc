@@ -30,7 +30,6 @@ def google_client():
 def google_sheet_list():
     client = st.session_state['client']
     book_id = st.secrets("BOOK_ID")
-    # book_id = os.getenv("BOOK_ID")
     book = client.open_by_key(book_id)
 
     return [sheet.title for sheet in book.worksheets()]
