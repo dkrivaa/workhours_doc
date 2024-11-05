@@ -82,7 +82,7 @@ def update_sheet(sheet_name):
     for index, row in df.iterrows():
         if is_before_current_month(row['Date']):
             df.at[index, 'reported'] = 1
-
+    sheet.update([df.columns.values.tolist()] + df.values.tolist())
     return df
 
 
