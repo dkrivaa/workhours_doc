@@ -36,15 +36,15 @@ if sheet_name is not None:
 
                     # Ensure the buffer was created
                     if docx_buffer is not None:
-                        st.download_button(
+                        if st.download_button(
                             label="Download Word Document",
                             data=docx_buffer,
                             file_name="my_document.docx",
                             mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                        )
+                        ):
 
-                        new_df = update_sheet(sheet_name)
-                        st.write(new_df)
+                            new_df = update_sheet(sheet_name)
+                            st.write(new_df)
 
                     else:
                         st.error("Failed to create document. `docx_buffer` is None.")
