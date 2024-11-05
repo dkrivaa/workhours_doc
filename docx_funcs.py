@@ -29,6 +29,83 @@ def calc_total_hours(df):
     total_hours = total_time.total_seconds() / 3600  # Convert total seconds to hours
     return total_hours
 
+
+def set_rtl(paragraph):
+    """Apply Right-to-Left formatting to a given paragraph."""
+    pPr = paragraph._element.get_or_add_pPr()
+    bidi = OxmlElement('w:bidi')
+    bidi.set(qn('w:val'), '1')
+    pPr.append(bidi)
+
+
+def add_paragraph_with_text(document, text, style=None, alignment=None, space_after=None, rtl=False):
+    """Add a styled and aligned paragraph with optional RTL formatting."""
+    paragraph = document.add_paragraph(text)
+    if style:
+        paragraph.style = style
+    if alignment:
+        paragraph.alignment = alignment
+    if space_after:
+        paragraph.paragraph_format.space_after = Pt(space_after)
+    if rtl:
+        set_rtl(paragraph)
+    return paragraph
+
+
+def create_document(df, title_text, total_hours_text):
+    document = Document()
+
+    # Set document-level Right-to-Left (RTL) layout
+    section = document.sections[0]
+    bidi = OxmlElement('w:bidi')
+    bidi.set(qn('w:val'), '1')
+    section._sectPr.append(bidi)
+
+    # Today's date in format dd/mm/yyyy
+    today = date.today().strftime("%d/%m/%Y")
+
+    # Add date paragraph with right alignment
+    add_paragraph_with_text(document, today, alignment=WD_ALIGN_PARAGRAPH.RIGHT, space_after=20)
+
+    # Add subject title in center with Heading1 style and RTL
+    add_paragraph_with_text(document, title_text, style='Heading1', alignment=WD_ALIGN_PARAGRAPH.CENTER, space_after=30,
+                            rtl=True)
+
+    # Add table with header row and data rows
+    table = document.add_table(rows=df.shape[0] + 1, cols=df.shape[1])
+    table.style = 'Table Grid'
+
+    # Populate header row
+    for j, column_name in enumerate(df.columns):
+        cell = table.cell(0, j)
+        cell.text = str(column_name)
+        set_rtl(cell.paragraphs[0])
+
+    # Populate data rows
+    for i, row in df.iterrows():
+        for j, value in enumerate(row):
+            cell = table.cell(i + 1, j)
+            cell.text = str(value)
+            set_rtl(cell.paragraphs[0])
+
+    # Add a blank paragraph after the table
+    document.add_paragraph()
+
+    # Add total hours paragraph with left alignment
+    add_paragraph_with_text(document, total_hours_text, style='Heading1', alignment=WD_ALIGN_PARAGRAPH.LEFT,
+                            space_after=20, rtl=True)
+
+    # Add blessing paragraph in center with Heading2 style and RTL
+    add_paragraph_with_text(document, 'בברכה', style='Heading2', alignment=WD_ALIGN_PARAGRAPH.CENTER, rtl=True)
+
+    # Save document to a BytesIO buffer
+    buffer = BytesIO()
+    document.save(buffer)
+    buffer.seek(0)
+
+    return buffer
+
+
 def one_docx(df):
 
     title_text = ''
@@ -58,94 +135,100 @@ def one_docx(df):
 
     df = reorder_dataframe(df)
 
-    # CREATE DOCUMENT
-    document = Document()
-
-    # Set RTL for the document
-    section = document.sections[0]
-    # Create bidi element if it doesn't exist
-    bidi = OxmlElement('w:bidi')
-    bidi.set(qn('w:val'), '1')
-    section._sectPr.append(bidi)
-
-    # Todays date in format dd/mm/yyyy
-    today = date.today().strftime("%d/%m/%Y")
-
-    # Add DATE to doc
-    add_date = document.add_paragraph(today)
-    # Set spacing after date paragraph
-    add_date.paragraph_format.space_after = Pt(20)
-
-    # Add SUBJECT
-    add_subject = document.add_paragraph()
-    add_subject.style = 'Heading1'
-    add_subject.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    # Set RTL for this paragraph
-    pPr = add_subject._element.get_or_add_pPr()
-    bidi = OxmlElement('w:bidi')
-    bidi.set(qn('w:val'), '1')
-    pPr.append(bidi)
-    # Add subject text
-    add_subject.add_run(title_text)
-    add_subject.paragraph_format.space_after = Pt(30)
-
-    # Add TABLE
-    table = document.add_table(rows=df.shape[0] + 1, cols=df.shape[1])
-    table.style = 'Table Grid'
-    # Add headers
-    for j, column_name in enumerate(df.columns):
-        cell = table.cell(0, j)
-        cell.text = str(column_name)
-        # Set RTL for header cells
-        pPr = cell.paragraphs[0]._element.get_or_add_pPr()
-        bidi = OxmlElement('w:bidi')
-        bidi.set(qn('w:val'), '1')
-        pPr.append(bidi)
-    # Add data rows
-    for i, row in df.iterrows():
-        for j, value in enumerate(row):
-            cell = table.cell(i + 1, j)
-            cell.text = str(value)
-            # Set RTL for each cell in the row
-            pPr = cell.paragraphs[0]._element.get_or_add_pPr()
-            bidi = OxmlElement('w:bidi')
-            bidi.set(qn('w:val'), '1')
-            pPr.append(bidi)
-
-    # Add a space below the table
-    document.add_paragraph()
-
-    # Add TOTAL hours
-    add_total_hours = document.add_paragraph()
-    add_total_hours.style = 'Heading1'
-    add_total_hours.alignment = WD_ALIGN_PARAGRAPH.LEFT
-    # Set RTL for this paragraph
-    pPr = add_total_hours._element.get_or_add_pPr()
-    bidi = OxmlElement('w:bidi')
-    bidi.set(qn('w:val'), '1')
-    pPr.append(bidi)
-    # Add subject text
-    add_total_hours.add_run(total_hours_text)
-    add_total_hours.paragraph_format.space_after = Pt(20)
-
-    # Add BLESS
-    add_bless = document.add_paragraph()
-    add_bless.style = 'Heading2'
-    add_bless.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    # Set RTL for this paragraph
-    pPr = add_bless._element.get_or_add_pPr()
-    bidi = OxmlElement('w:bidi')
-    bidi.set(qn('w:val'), '1')
-    pPr.append(bidi)
-    # Add bless text
-    add_bless.add_run('בברכה')
-
-    # Save the document in a BytesIO object
-    buffer = BytesIO()
-    document.save(buffer)
-    buffer.seek(0)
+    buffer = create_document(df, title_text, total_hours_text)
 
     return buffer
+
+
+    #
+    # # CREATE DOCUMENT
+    # document = Document()
+    #
+    # # Set RTL for the document
+    # section = document.sections[0]
+    # # Create bidi element if it doesn't exist
+    # bidi = OxmlElement('w:bidi')
+    # bidi.set(qn('w:val'), '1')
+    # section._sectPr.append(bidi)
+    #
+    # # Todays date in format dd/mm/yyyy
+    # today = date.today().strftime("%d/%m/%Y")
+    #
+    # # Add DATE to doc
+    # add_date = document.add_paragraph(today)
+    # # Set spacing after date paragraph
+    # add_date.paragraph_format.space_after = Pt(20)
+    #
+    # # Add SUBJECT
+    # add_subject = document.add_paragraph()
+    # add_subject.style = 'Heading1'
+    # add_subject.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    # # Set RTL for this paragraph
+    # pPr = add_subject._element.get_or_add_pPr()
+    # bidi = OxmlElement('w:bidi')
+    # bidi.set(qn('w:val'), '1')
+    # pPr.append(bidi)
+    # # Add subject text
+    # add_subject.add_run(title_text)
+    # add_subject.paragraph_format.space_after = Pt(30)
+    #
+    # # Add TABLE
+    # table = document.add_table(rows=df.shape[0] + 1, cols=df.shape[1])
+    # table.style = 'Table Grid'
+    # # Add headers
+    # for j, column_name in enumerate(df.columns):
+    #     cell = table.cell(0, j)
+    #     cell.text = str(column_name)
+    #     # Set RTL for header cells
+    #     pPr = cell.paragraphs[0]._element.get_or_add_pPr()
+    #     bidi = OxmlElement('w:bidi')
+    #     bidi.set(qn('w:val'), '1')
+    #     pPr.append(bidi)
+    # # Add data rows
+    # for i, row in df.iterrows():
+    #     for j, value in enumerate(row):
+    #         cell = table.cell(i + 1, j)
+    #         cell.text = str(value)
+    #         # Set RTL for each cell in the row
+    #         pPr = cell.paragraphs[0]._element.get_or_add_pPr()
+    #         bidi = OxmlElement('w:bidi')
+    #         bidi.set(qn('w:val'), '1')
+    #         pPr.append(bidi)
+    #
+    # # Add a space below the table
+    # document.add_paragraph()
+    #
+    # # Add TOTAL hours
+    # add_total_hours = document.add_paragraph()
+    # add_total_hours.style = 'Heading1'
+    # add_total_hours.alignment = WD_ALIGN_PARAGRAPH.LEFT
+    # # Set RTL for this paragraph
+    # pPr = add_total_hours._element.get_or_add_pPr()
+    # bidi = OxmlElement('w:bidi')
+    # bidi.set(qn('w:val'), '1')
+    # pPr.append(bidi)
+    # # Add subject text
+    # add_total_hours.add_run(total_hours_text)
+    # add_total_hours.paragraph_format.space_after = Pt(20)
+    #
+    # # Add BLESS
+    # add_bless = document.add_paragraph()
+    # add_bless.style = 'Heading2'
+    # add_bless.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    # # Set RTL for this paragraph
+    # pPr = add_bless._element.get_or_add_pPr()
+    # bidi = OxmlElement('w:bidi')
+    # bidi.set(qn('w:val'), '1')
+    # pPr.append(bidi)
+    # # Add bless text
+    # add_bless.add_run('בברכה')
+    #
+    # # Save the document in a BytesIO object
+    # buffer = BytesIO()
+    # document.save(buffer)
+    # buffer.seek(0)
+    #
+    # return buffer
 
 
 
