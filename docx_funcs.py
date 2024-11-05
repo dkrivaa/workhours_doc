@@ -99,7 +99,7 @@ def create_document(df, title_text, total_hours_text):
     add_paragraph_with_text(document, 'בברכה', style='Heading2', alignment=WD_ALIGN_PARAGRAPH.CENTER,
                             space_after=20, rtl=True)
 
-    add_paragraph_with_text(document, 'דני קריבו', style='Heading2', alignment=WD_ALIGN_PARAGRAPH.CENTER,
+    add_paragraph_with_text(document, 'test', style='Heading2', alignment=WD_ALIGN_PARAGRAPH.CENTER,
                             rtl=True)
 
     # Save document to a BytesIO buffer
