@@ -26,6 +26,8 @@ if sheet_name is not None:
         st.subheader('Workhours to report:')
         df = read_sheet(sheet_name)
 
+        df.write(df)
+
         # If there are hours to report
         if len(df) > 0:
             st.dataframe(df)
