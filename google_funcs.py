@@ -45,7 +45,7 @@ def is_before_current_month(date_str):
     day, month, year = map(int, date_str.split("/"))
 
     # Check if year is before the current year, or if within the same year, check the month
-    return year < current_year or (year == current_year and month <= current_month)
+    return year < current_year or (year == current_year and month < current_month)
 
 
 def read_sheet(sheet_name):
