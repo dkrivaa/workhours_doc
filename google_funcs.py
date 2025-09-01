@@ -37,6 +37,7 @@ def google_sheet_list():
 
 # Check if unreported record is from before present month
 def is_before_current_month(date_str):
+    print(date_str)
     # Get the current month and year
     current_month = datetime.now().month
     current_year = datetime.now().year
