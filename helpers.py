@@ -15,7 +15,7 @@ def months(df):
         months_list.add(month)
         year_list.add(year)
 
-    return months_list, year_list
+    return list(months_list), list(year_list)
 
 
 def month_names_dict():
