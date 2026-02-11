@@ -116,6 +116,8 @@ def one_docx(df):
     month_list, year_list = months(df)
     month_dict = month_names_dict()
 
+    # Getting project name from google sheet name according to the mapping in project_names_dict
+    # in helpers.py
     project = project_names_dict()[st.session_state['sheet_name']]
 
     if len(month_list) == 1:
