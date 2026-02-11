@@ -9,7 +9,7 @@ from datetime import date
 from io import BytesIO
 
 
-from helpers import months, month_names_dict
+from helpers import months, month_names_dict, project_names_dict
 
 
 def reorder_dataframe(df):
@@ -116,12 +116,14 @@ def one_docx(df):
     month_list, year_list = months(df)
     month_dict = month_names_dict()
 
+    project = project_names_dict()[st.session_state['sheet_name']]
+
     if len(month_list) == 1:
         month_name = month_dict[str(month_list[0])]
         year = year_list[0]
         st.write(month_name)
         hebrew_text = 'דיווח שעות לחודש'
-        title_text = f'{hebrew_text} {month_name} {year} '
+        title_text = f'{hebrew_text} {project} - {month_name} {year} '
 
     elif len(month_list) > 1:
         min_month = month_dict[str(month_list[0])]

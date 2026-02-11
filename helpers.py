@@ -34,3 +34,12 @@ def month_names_dict():
         '12': 'דצמבר',
     }
 
+
+def project_names_dict():
+    return {
+        'MNS': 'פרויקט מגידו',
+        'Education': 'פרויקט משרד החינוך',
+        'MNS_Employment': 'פרויקט תעסוקת אסירים',
+        # Add more project mappings as needed
+    }
+

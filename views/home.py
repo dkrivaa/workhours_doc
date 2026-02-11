@@ -22,6 +22,9 @@ if "downloaded" not in st.session_state:
 
 # Getting the data from relevant sheet that hasn't been reported
 if sheet_name is not None:
+    # Assign sheet_name to session_state
+    st.session_state['sheet_name'] = sheet_name
+
     with st.container(border=True):
         st.subheader('Workhours to report:')
         df = read_sheet(sheet_name)
