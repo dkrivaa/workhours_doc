@@ -35,11 +35,15 @@ def month_names_dict():
     }
 
 
-def project_names_dict():
-    return {
+def project_names_dict(key):
+    project_dict =  {
         'MNS': 'פרויקט מגידו',
         'Education': 'פרויקט משרד החינוך',
         'MNS_Employment': 'פרויקט תעסוקת אסירים',
         # Add more project mappings as needed
     }
+    if key in project_dict:
+        return project_dict[key]
+    else:
+        return 'Unknown Project'
 
